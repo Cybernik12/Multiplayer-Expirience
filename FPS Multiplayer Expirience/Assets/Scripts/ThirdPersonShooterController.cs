@@ -40,8 +40,6 @@ public class ThirdPersonShooterController : NetworkBehaviour
     {
         if (!IsClient) return;
 
-        debugTransform = GameObject.FindGameObjectWithTag("Target").transform;
-
         Vector3 mouseWorldPosition = Vector3.zero;
 
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
@@ -79,7 +77,7 @@ public class ThirdPersonShooterController : NetworkBehaviour
             aimRigWeight = 0f;
         }
 
-        if (starterAssetsInputs.shoot)
+        if (starterAssetsInputs.shoot && starterAssetsInputs.aim)
         {
             Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
             Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
